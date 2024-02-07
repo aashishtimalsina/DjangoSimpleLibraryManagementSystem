@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Hamrobooks {% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        footer {
+            background-color: #143a81;;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+    <a class="navbar-brand" href="#">
+        <img src="images/logo.png" alt="Your Book Store Logo" width="150px" height="80px">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto"> <!-- Use ml-auto to push items to the right -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- Main Content -->
+{% block content %}{% endblock %}
+
+<footer>
+    <p>&copy; 2023 HamroBooks. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Finstagram.com%2Fhamro_books8%3Figshid%3DMzRlODBiNWFlZA%253D%253D%26fbclid%3DIwAR3ClUi2J6IVx_0Ex0yUNn1LptfG4_vyZXaw-p4KskyFmWY7c9ccDd8LUAM&h=AT1Q_u_IHaSs73WyCMEC2wBOwmjzmTVm2R8zZr0yuTETrMDSvkPEvkWqyupTMiHvLSJnBfC9yKJ_e-cbIMwSlrL6B9rrJJ3cUa4UDbAMSWXGjXIMYMN5cVktxwPs_PJnr6NirdT54LSkXlLqP97MIA" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100081809941598&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </div>
+  </footer><!-- Bootstrap JS (Optional, only if you need Bootstrap JavaScript components) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Custom JavaScript for fetching books and creating cards -->
+</body>
+</html>
