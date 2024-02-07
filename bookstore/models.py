@@ -29,4 +29,4 @@ class bookOrder(models.Model):
     is_received = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title
+        return self.customer_name

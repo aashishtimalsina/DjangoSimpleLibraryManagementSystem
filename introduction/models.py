@@ -5,6 +5,7 @@ from ckeditor.fields import RichTextField
 class introduction(models.Model):
     name = models.CharField(max_length=100)
     description = RichTextField()
+    cover = models.ImageField(upload_to='covers/')
 
     def __str__(self):
         return self.name
