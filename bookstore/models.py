@@ -30,3 +30,4 @@ class bookOrder(models.Model):
 
     def __str__(self):
         return self.customer_name
+    

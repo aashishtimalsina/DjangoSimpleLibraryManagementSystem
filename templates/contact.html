@@ -3,26 +3,30 @@
 {% block title %}Contact Form{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Contact Us</h2>
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <form>
-                <div class="form-group">
-                    <label for="name">Your Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
+<div class="container mt-10">
+    <h2 class="text-3xl font-bold mb-8 text-center">Contact Us</h2>
+    <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <form class="px-8 py-6" method="POST" action="{% url 'contact_view' %}">
+            {% csrf_token %}
+            <div class="mb-6">
+                <label for="name" class="block text-gray-700 font-bold mb-2">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name"
+                       class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"/>
+            </div>
+            <div class="mb-6">
+                <label for="email" class="block text-gray-700 font-bold mb-2">Your Email:</label>
+                <input type="email" id="email" placeholder="Enter your email"
+                       class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"/>
+            </div>
+            <div class="mb-6">
+                <label for="message" class="block text-gray-700 font-bold mb-2">Message:</label>
+                <textarea id="message" rows="5" placeholder="Enter your message"
+                          class="form-textarea mt-1 block w-full rounded-md border-gray-300 shadow-sm"></textarea>
+            </div>
+            <button type="submit"
+                    class="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200">Submit
+            </button>
+        </form>
     </div>
 </div>
 {% endblock %}

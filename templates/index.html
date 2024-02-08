@@ -3,84 +3,24 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Books</h2>
-    <div class="row">
+<div class="container mx-auto">
+    <h2 class="text-3xl font-bold mb-4">Books</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Book Card 1 -->
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="images/book.jpg" class="card-img-top img-fluid rounded" alt="Book 1" style="object-fit: cover; height: 300px;">
-                <div class="card-body">
-                    <h5 class="card-title">Book 1</h5>
-                    <p class="card-text">Author: Author 1</p>
-                    <p class="card-text">Rating: 4.5</p>
+        {% for book in books %}
+            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                <img src="{{ book.cover.url }}" class="w-full" alt="{{ book.title }}" style="object-fit: cover; height: auto;">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">{{ book.title }}</div>
+                    <p class="text-base">Author: {{ book.author }}</p>
+                    <!-- Add more book details as needed -->
                 </div>
             </div>
-        </div>
-        
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="images/physics.jpg" class="card-img-top img-fluid rounded" alt="Book 2" style="object-fit: cover; height: 300px;">
-                <div class="card-body">
-                    <h5 class="card-title">Book 2</h5>
-                    <p class="card-text">Author: Author 2</p>
-                    <p class="card-text">Rating: 4.0</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="images/chemistry.png" class="card-img-top img-fluid rounded" alt="Book 3" style="object-fit: cover; height: 300px;">
-                <div class="card-body">
-                    <h5 class="card-title">Book 3</h5>
-                    <p class="card-text">Author: Author 3</p>
-                    <p class="card-text">Rating: 3.0</p>
-                </div>
-            </div>
-        </div>
-        
+        {% endfor %}
         <!-- Add more book cards as needed -->
     </div>
 
-    <h2>Books</h2>
-    <div class="row">
-        <!-- Book Card 1 -->
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="images/book.jpg" class="card-img-top img-fluid rounded" alt="Book 1" style="object-fit: cover; height: 300px;">
-                <div class="card-body">
-                    <h5 class="card-title">Book 1</h5>
-                    <p class="card-text">Author: Author 1</p>
-                    <p class="card-text">Rating: 4.5</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="images/physics.jpg" class="card-img-top img-fluid rounded" alt="Book 2" style="object-fit: cover; height: 300px;">
-                <div class="card-body">
-                    <h5 class="card-title">Book 2</h5>
-                    <p class="card-text">Author: Author 2</p>
-                    <p class="card-text">Rating: 4.0</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="images/chemistry.png" class="card-img-top img-fluid rounded" alt="Book 3" style="object-fit: cover; height: 300px;">
-                <div class="card-body">
-                    <h5 class="card-title">Book 3</h5>
-                    <p class="card-text">Author: Author 3</p>
-                    <p class="card-text">Rating: 3.0</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Add more book cards as needed -->
-    </div>
+   
     
 </div>
     
