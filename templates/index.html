@@ -23,19 +23,21 @@
     <div id="orderModal" class="modal hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
         <div class="modal-content bg-white w-1/2 p-8 rounded-lg">
             <span class="close absolute top-0 right-0 mt-4 mr-4 cursor-pointer">&times;</span>
-            <form id="orderForm" method="POST" action="{% url 'order_book' %}">
+            <form id="orderForm" method="POST" action="{% url 'order_book' %}" class="flex flex-col">
                 {% csrf_token %}
                 <input type="hidden" id="bookId" name="book_id">
-                <input type="text" name="customer_name" placeholder="Your Name">
-                <input type="email" name="email" placeholder="Your Email">
-                <input type="text" name="phone" placeholder="Your Phone">
+                <input type="text" name="customer_name" placeholder="Your Name" class="mb-4 p-2 rounded border border-gray-300">
+                <input type="email" name="email" placeholder="Your Email" class="mb-4 p-2 rounded border border-gray-300">
+                <input type="text" name="phone" placeholder="Your Phone" class="mb-4 p-2 rounded border border-gray-300">
+                <input type="text" name="coupon" placeholder="Any Coupon" class="mb-4 p-2 rounded border border-gray-300">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
             </form>
         </div>
     </div>
     
+    
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     function openOrderForm(bookId) {
         document.getElementById('orderModal').classList.remove('hidden');
@@ -45,4 +47,46 @@
         document.getElementById('orderModal').classList.add('hidden');
     });
 </script>
+
+<script>
+    // Function to handle form submission using AJAX
+    function submitOrderForm(event) {
+        event.preventDefault(); // Prevent default form submission
+        var formData = new FormData(document.getElementById('orderForm')); // Get form data
+        var bookId = document.getElementById('bookId').value; // Get the book ID
+        formData.append('book', bookId);
+        fetch("{% url 'order_book' %}", {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json(); // Parse response as JSON
+            } else {
+                throw new Error('Something went wrong');
+            }
+        })
+        .then(data => {
+            // Handle success response
+            console.log(data);
+            // Close modal or perform any other actions
+            Swal.fire({
+                title: 'Success!',
+                text: 'Your order has been submitted successfully!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+            // Close modal or perform any other actions
+            document.getElementById('orderModal').classList.add('hidden');
+        })
+        .catch(error => {
+            // Handle error
+            console.error('Error:', error);
+        });
+    }
+
+    // Attach event listener to form submission
+    document.getElementById('orderForm').addEventListener('submit', submitOrderForm);
+</script>
+
 {% endblock %}

@@ -4,6 +4,8 @@ from web.forms import BookOrderForm
 from django.contrib import messages
 from bookstore.models import book
 from introduction.models import introduction
+from django.http import JsonResponse
+
 
 def home(request):
     books = book.objects.all()  
@@ -24,13 +26,11 @@ def contact(request):
         form = ContactMessageForm()
     return render(request, 'contact.html', {'form': form})
 
-
 def order_book(request):
     if request.method == 'POST':
         form = BookOrderForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/success/')
-    else:
-        form = BookOrderForm()
-    return render(request, 'order_book.html', {'form': form})
+            return JsonResponse({'message': 'Order placed successfully'})
+        else:
+            return JsonResponse({'errors': form.errors}, status=400)
