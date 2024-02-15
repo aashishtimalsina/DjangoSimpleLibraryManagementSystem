@@ -21,7 +21,7 @@ class book(models.Model):
         return self.title
 
 class bookOrder(models.Model):
-    book = models.ManyToManyField(book)
+    book = models.ForeignKey('Book', on_delete=models.CASCADE)
     customer_name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15)

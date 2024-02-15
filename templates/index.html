@@ -8,7 +8,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Book Card 1 -->
         {% for book in books %}
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+            <div class="max-w-sm rounded overflow-hidden shadow-lg" onclick="openOrderForm('{{ book.id }}')">
                 <img src="{{ book.cover.url }}" class="w-full" alt="{{ book.title }}" style="object-fit: cover; height: auto;">
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">{{ book.title }}</div>
@@ -20,8 +20,29 @@
         <!-- Add more book cards as needed -->
     </div>
 
-   
+    <div id="orderModal" class="modal hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div class="modal-content bg-white w-1/2 p-8 rounded-lg">
+            <span class="close absolute top-0 right-0 mt-4 mr-4 cursor-pointer">&times;</span>
+            <form id="orderForm" method="POST" action="{% url 'order_book' %}">
+                {% csrf_token %}
+                <input type="hidden" id="bookId" name="book_id">
+                <input type="text" name="customer_name" placeholder="Your Name">
+                <input type="email" name="email" placeholder="Your Email">
+                <input type="text" name="phone" placeholder="Your Phone">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+            </form>
+        </div>
+    </div>
     
 </div>
-    
+
+<script>
+    function openOrderForm(bookId) {
+        document.getElementById('orderModal').classList.remove('hidden');
+        document.getElementById('bookId').value = bookId;
+    }
+    document.querySelector('.close').addEventListener('click', function () {
+        document.getElementById('orderModal').classList.add('hidden');
+    });
+</script>
 {% endblock %}

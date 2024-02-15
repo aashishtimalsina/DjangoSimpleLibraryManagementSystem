@@ -32,16 +32,5 @@ class Migration(migrations.Migration):
                 ('categories', models.ManyToManyField(to='bookstore.bookcategory')),
             ],
         ),
-        migrations.CreateModel(
-            name='bookOrder',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('customer_name', models.CharField(max_length=100)),
-                ('email', models.EmailField(max_length=254)),
-                ('phone', models.CharField(max_length=15)),
-                ('coupon', models.CharField(blank=True, max_length=50, null=True)),
-                ('is_received', models.BooleanField(default=False)),
-                ('book', models.ManyToManyField(to='bookstore.book')),
-            ],
-        ),
+        
     ]
