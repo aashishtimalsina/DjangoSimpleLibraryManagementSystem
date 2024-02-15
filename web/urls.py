@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.urls import path
 from bookstore.models import book
 from introduction.models import introduction
-from contact.views import contact_view
+from web.forms import ContactMessageForm 
+from django.contrib import messages
 
 
 def home(request):
@@ -15,11 +16,19 @@ def about(request):
     return render(request, 'about.html', {'introductions': introductions})
 
 def contact(request):
-    return render(request, 'contact.html')
-
+    if request.method == 'POST':
+        form = ContactMessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your message has been sent successfully!')
+            return HttpResponseRedirect('/success/')  # Redirect to a success page
+    else:
+        form = ContactMessageForm()
+    return render(request, 'contact.html', {'form': form})
 
 urlpatterns = [
     path('', home, name='home'),  
     path('about/', about, name='about'),  
-    path('contact/',contact_view, name='contact'),
+    path('contact/',contact, name='contact'),
+    path('success/', lambda request: render(request, 'success.html'), name='success'),
 ]
