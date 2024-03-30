@@ -1,6 +1,6 @@
 # Library Management System
 
-This is a Library Management System built using Django, a high-level Python web framework. The system allows librarians to manage books, patrons, borrowing, and returning.
+This is a Library Management System built using Python Django, a high-level Python web framework. The system allows librarians to manage books, patrons, borrowing, and returning.
 
 ## Features
 
